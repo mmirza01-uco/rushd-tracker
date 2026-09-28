@@ -4,6 +4,7 @@
 // Tiap entitas punya: Create, Read, Update, Delete  => 3 x 4 = 12 fungsi.
 // Data dipisah per user: users/{uid}/{entitas}/{id}
 // ============================================================
+import { onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 import {
   ref,
   push,
@@ -12,14 +13,29 @@ import {
   remove,
   onValue,
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
-import { db } from "./firebase-config.js";
+import { auth, db } from "./firebase-config.js";
 
+let uid = null;
 
+// ---- Guard: hanya user login + terverifikasi yang boleh di sini ----
+onAuthStateChanged(auth, (user) => {
+  if (!user) {
+    window.location.href = "index.html";
+    return;
+  }
+  uid = user.uid;
+  document.getElementById("email-user").textContent = user.email;
+  pasangPembacaRealtime(); // subscribe READ setelah uid siap
+});
 
+document.getElementById("btn-logout").addEventListener("click", async () => {
+  await signOut(auth);
+  window.location.href = "index.html";
+});
 
-// Helper path per entitas (data disimpan di level atas Realtime Database).
+// Helper path per entitas untuk user yang sedang login.
 const pathEntitas = (entitas, id) =>
-  ref(db, `${entitas}` + (id ? `/${id}` : ""));
+  ref(db, `users/${uid}/${entitas}` + (id ? `/${id}` : ""));
 
 // ============================================================
 // 12 FUNGSI CRUD
@@ -320,6 +336,3 @@ function pasangPembacaRealtime() {
   readProyek(renderProyek);
   readInvoice(renderInvoice);
 }
-
-// Aplikasi tanpa login: langsung baca data saat halaman dimuat.
-pasangPembacaRealtime();

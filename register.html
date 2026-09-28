@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Daftar — Rushd Studio Tracker</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body class="layar-auth">
+  <main class="kartu-auth">
+    <div class="merek">
+      <span class="logo">R</span>
+      <div>
+        <h1>Rushd Studio Tracker</h1>
+        <p class="sub">Pencatatan klien, proyek, dan invoice</p>
+      </div>
+    </div>
+
+    <h2>Daftar</h2>
+    <form id="form-register" novalidate>
+      <label>Email
+        <input type="email" name="email" required autocomplete="email" placeholder="nama@email.com" />
+      </label>
+      <label>Password
+        <input type="password" name="password" required autocomplete="new-password" placeholder="minimal 6 karakter" />
+      </label>
+      <button type="submit">Daftar</button>
+    </form>
+
+    <p id="pesan" class="pesan" role="status" aria-live="polite"></p>
+    <p class="catatan">Setelah mendaftar, silakan login dengan akunmu.</p>
+
+    <p class="ganti">Sudah punya akun? <a href="index.html">Masuk di sini</a></p>
+  </main>
+
+  <script type="module" src="js/register.js"></script>
+</body>
+</html>

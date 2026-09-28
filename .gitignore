@@ -1,0 +1,14 @@
+# Sistem
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/
+
+# Dependency (kalau nanti pakai)
+node_modules/
+
+# Jangan commit config Firebase asli kalau kamu mau simpan credential terpisah.
+# (Untuk tugas kuliah, config Firebase Web boleh di-commit — sifatnya publik.)
+# js/firebase-config.js

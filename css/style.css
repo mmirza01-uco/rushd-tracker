@@ -1,0 +1,170 @@
+:root {
+  --ink: #1b1d1f;
+  --ink-lembut: #5b6266;
+  --garis: #e3e6e8;
+  --bg: #f5f6f7;
+  --putih: #ffffff;
+  --aksen: #2f6f6a;
+  --aksen-gelap: #245853;
+  --merah: #b3261e;
+  --hijau: #1f7a44;
+  --biru: #285fb0;
+  --abu: #6b7280;
+  --radius: 10px;
+  --bayang: 0 1px 3px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.04);
+  --font: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: var(--font);
+  color: var(--ink);
+  background: var(--bg);
+  line-height: 1.5;
+}
+
+h1, h2, h3 { margin: 0 0 .4rem; line-height: 1.25; }
+
+a { color: var(--aksen); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* ---------- Merek / logo ---------- */
+.merek { display: flex; align-items: center; gap: .75rem; margin-bottom: 1.5rem; }
+.merek.kecil { margin-bottom: 0; gap: .5rem; }
+.logo {
+  display: grid; place-items: center;
+  width: 40px; height: 40px;
+  background: var(--aksen); color: #fff;
+  font-weight: 700; border-radius: 8px; flex: none;
+}
+.merek h1 { font-size: 1.15rem; }
+.merek .sub { margin: 0; color: var(--ink-lembut); font-size: .85rem; }
+
+/* ---------- Halaman auth (login/register) ---------- */
+.layar-auth {
+  display: grid; place-items: center;
+  min-height: 100vh; padding: 1.5rem;
+}
+.kartu-auth {
+  width: 100%; max-width: 400px;
+  background: var(--putih);
+  border: 1px solid var(--garis);
+  border-radius: var(--radius);
+  box-shadow: var(--bayang);
+  padding: 2rem;
+}
+.kartu-auth h2 { font-size: 1.25rem; margin-bottom: 1rem; }
+
+form { display: flex; flex-direction: column; gap: .85rem; }
+label { display: flex; flex-direction: column; gap: .3rem; font-size: .85rem; color: var(--ink-lembut); font-weight: 500; }
+input, select {
+  font: inherit; color: var(--ink);
+  padding: .6rem .7rem;
+  border: 1px solid var(--garis); border-radius: 8px;
+  background: var(--putih);
+  width: 100%;
+}
+input:focus, select:focus { outline: 2px solid var(--aksen); outline-offset: 0; border-color: var(--aksen); }
+
+button {
+  font: inherit; font-weight: 600; cursor: pointer;
+  padding: .6rem 1rem;
+  background: var(--aksen); color: #fff;
+  border: 1px solid var(--aksen); border-radius: 8px;
+}
+button:hover { background: var(--aksen-gelap); border-color: var(--aksen-gelap); }
+button:disabled { opacity: .6; cursor: default; }
+.btn-teks { background: none; color: var(--ink-lembut); border-color: transparent; padding: .6rem .5rem; }
+.btn-teks:hover { background: #eef0f1; color: var(--ink); }
+
+.pesan { margin: 1rem 0 0; font-size: .88rem; min-height: 1.2em; }
+.pesan.error { color: var(--merah); }
+.pesan.sukses { color: var(--hijau); }
+.catatan { font-size: .8rem; color: var(--ink-lembut); }
+.ganti { margin-top: 1.25rem; font-size: .88rem; text-align: center; }
+
+/* ---------- Topbar dashboard ---------- */
+.topbar {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 1rem; flex-wrap: wrap;
+  background: var(--putih); border-bottom: 1px solid var(--garis);
+  padding: .75rem 1.25rem;
+}
+.user { display: flex; align-items: center; gap: .75rem; }
+.email { font-size: .85rem; color: var(--ink-lembut); }
+
+/* ---------- Tabs ---------- */
+.tabs {
+  display: flex; gap: .25rem; flex-wrap: wrap;
+  padding: .75rem 1.25rem 0;
+  max-width: 1000px; margin: 0 auto; width: 100%;
+}
+.tab {
+  background: none; color: var(--ink-lembut);
+  border: 1px solid transparent; border-bottom: none;
+  border-radius: 8px 8px 0 0;
+  display: flex; align-items: center; gap: .4rem;
+}
+.tab:hover { background: #eef0f1; color: var(--ink); }
+.tab.aktif {
+  background: var(--putih); color: var(--ink);
+  border-color: var(--garis);
+}
+.pil {
+  background: var(--aksen); color: #fff;
+  font-size: .72rem; font-weight: 700;
+  padding: .05rem .45rem; border-radius: 999px;
+}
+
+/* ---------- Konten ---------- */
+.konten { max-width: 1000px; margin: 0 auto; padding: 1.25rem; }
+.panel { display: none; }
+.panel.aktif { display: block; }
+
+.form-entitas {
+  background: var(--putih); border: 1px solid var(--garis);
+  border-radius: var(--radius); box-shadow: var(--bayang);
+  padding: 1.25rem; margin-bottom: 1.25rem;
+}
+.form-entitas h3 { font-size: 1rem; }
+.grid-form {
+  display: grid; gap: .85rem;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+}
+.aksi-form { display: flex; gap: .5rem; margin-top: 1rem; }
+
+/* ---------- Tabel ---------- */
+.tabel-bungkus {
+  background: var(--putih); border: 1px solid var(--garis);
+  border-radius: var(--radius); box-shadow: var(--bayang);
+  overflow-x: auto;
+}
+table { width: 100%; border-collapse: collapse; min-width: 560px; }
+th, td { text-align: left; padding: .7rem .9rem; border-bottom: 1px solid var(--garis); font-size: .9rem; }
+th { background: #fafbfb; color: var(--ink-lembut); font-weight: 600; font-size: .78rem; text-transform: uppercase; letter-spacing: .02em; }
+tr:last-child td { border-bottom: none; }
+td.kosong { text-align: center; color: var(--ink-lembut); padding: 1.5rem; }
+
+.aksi { white-space: nowrap; }
+.aksi button { padding: .35rem .7rem; font-size: .82rem; }
+.aksi button[data-edit] { background: none; color: var(--aksen); border-color: var(--garis); }
+.aksi button[data-edit]:hover { background: #eef4f3; }
+.aksi button.hapus { background: none; color: var(--merah); border-color: var(--garis); margin-left: .35rem; }
+.aksi button.hapus:hover { background: #fbeceb; }
+
+.badge { font-size: .75rem; font-weight: 600; padding: .15rem .5rem; border-radius: 999px; display: inline-block; }
+.badge.hijau { background: #e5f3ea; color: var(--hijau); }
+.badge.biru { background: #e7eefa; color: var(--biru); }
+.badge.abu { background: #eef0f1; color: var(--abu); }
+
+/* ---------- Responsive ---------- */
+@media (max-width: 560px) {
+  .kartu-auth { padding: 1.5rem; }
+  .konten { padding: 1rem; }
+  .topbar { padding: .75rem 1rem; }
+  .tabs { padding: .75rem 1rem 0; }
+  .aksi-form { flex-direction: column; }
+  .aksi-form button { width: 100%; }
+}

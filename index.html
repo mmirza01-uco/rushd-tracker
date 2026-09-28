@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard — Rushd Studio Tracker</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="merek kecil">
+      <span class="logo">R</span>
+      <strong>Rushd Studio Tracker</strong>
+    </div>
+  </header>
+
+  <nav class="tabs">
+    <button class="tab aktif" data-target="panel-klien">Klien <span class="pil" id="hitung-klien">0</span></button>
+    <button class="tab" data-target="panel-proyek">Proyek <span class="pil" id="hitung-proyek">0</span></button>
+    <button class="tab" data-target="panel-invoice">Invoice <span class="pil" id="hitung-invoice">0</span></button>
+  </nav>
+
+  <main class="konten">
+    <!-- ============ PANEL KLIEN ============ -->
+    <section id="panel-klien" class="panel aktif">
+      <form id="form-klien" class="form-entitas">
+        <h3 id="klien-mode">Tambah Klien</h3>
+        <input type="hidden" id="klien-id" />
+        <div class="grid-form">
+          <label>Nama <input name="nama" required placeholder="Nama kontak" /></label>
+          <label>Perusahaan <input name="perusahaan" placeholder="Nama perusahaan" /></label>
+          <label>Email <input type="email" name="email" placeholder="email@klien.com" /></label>
+          <label>Telepon <input name="telepon" placeholder="08xx" /></label>
+        </div>
+        <div class="aksi-form">
+          <button type="submit">Simpan</button>
+          <button type="button" id="klien-batal" class="btn-teks" hidden>Batal</button>
+        </div>
+      </form>
+
+      <div class="tabel-bungkus">
+        <table id="tabel-klien">
+          <thead>
+            <tr><th>Nama</th><th>Perusahaan</th><th>Email</th><th>Telepon</th><th>Aksi</th></tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ============ PANEL PROYEK ============ -->
+    <section id="panel-proyek" class="panel">
+      <form id="form-proyek" class="form-entitas">
+        <h3 id="proyek-mode">Tambah Proyek</h3>
+        <input type="hidden" id="proyek-id" />
+        <div class="grid-form">
+          <label>Nama proyek <input name="nama" required placeholder="Judul proyek" /></label>
+          <label>Klien <input name="klien" placeholder="Nama klien" /></label>
+          <label>Status
+            <select name="status">
+              <option value="Rencana">Rencana</option>
+              <option value="Berjalan">Berjalan</option>
+              <option value="Selesai">Selesai</option>
+            </select>
+          </label>
+          <label>Deadline <input type="date" name="deadline" /></label>
+          <label>Nilai (Rp) <input type="number" name="nilai" min="0" placeholder="0" /></label>
+        </div>
+        <div class="aksi-form">
+          <button type="submit">Simpan</button>
+          <button type="button" id="proyek-batal" class="btn-teks" hidden>Batal</button>
+        </div>
+      </form>
+
+      <div class="tabel-bungkus">
+        <table id="tabel-proyek">
+          <thead>
+            <tr><th>Nama</th><th>Klien</th><th>Status</th><th>Deadline</th><th>Nilai</th><th>Aksi</th></tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ============ PANEL INVOICE ============ -->
+    <section id="panel-invoice" class="panel">
+      <form id="form-invoice" class="form-entitas">
+        <h3 id="invoice-mode">Tambah Invoice</h3>
+        <input type="hidden" id="invoice-id" />
+        <div class="grid-form">
+          <label>Nomor <input name="nomor" required placeholder="INV-001" /></label>
+          <label>Proyek <input name="proyek" placeholder="Nama proyek" /></label>
+          <label>Jumlah (Rp) <input type="number" name="jumlah" min="0" placeholder="0" /></label>
+          <label>Status
+            <select name="status">
+              <option value="Belum Lunas">Belum Lunas</option>
+              <option value="Lunas">Lunas</option>
+            </select>
+          </label>
+          <label>Tanggal <input type="date" name="tanggal" /></label>
+        </div>
+        <div class="aksi-form">
+          <button type="submit">Simpan</button>
+          <button type="button" id="invoice-batal" class="btn-teks" hidden>Batal</button>
+        </div>
+      </form>
+
+      <div class="tabel-bungkus">
+        <table id="tabel-invoice">
+          <thead>
+            <tr><th>Nomor</th><th>Proyek</th><th>Jumlah</th><th>Status</th><th>Tanggal</th><th>Aksi</th></tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>

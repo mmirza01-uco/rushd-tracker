@@ -94,6 +94,24 @@ document.querySelectorAll(".tab").forEach((tab) => {
 
 const rupiah = (n) => "Rp " + (Number(n) || 0).toLocaleString("id-ID");
 
+// Isi <select> dari daftar nilai, mempertahankan pilihan yang sedang aktif.
+function isiDropdown(sel, values, placeholder) {
+  if (!sel) return;
+  const terpilih = sel.value;
+  const unik = [...new Set(values.filter(Boolean))];
+  sel.innerHTML =
+    `<option value="">${placeholder}</option>` +
+    unik.map((v) => `<option value="${aman(v)}">${aman(v)}</option>`).join("");
+  if (terpilih && unik.includes(terpilih)) sel.value = terpilih;
+}
+
+// Saat menyunting, pastikan nilai lama tetap ada di dropdown meski datanya sudah hilang.
+function pastikanOpsi(sel, val) {
+  if (sel && val && ![...sel.options].some((o) => o.value === val)) {
+    sel.insertAdjacentHTML("beforeend", `<option value="${aman(val)}">${aman(val)} (tidak ada di daftar)</option>`);
+  }
+}
+
 const aman = (s) =>
   String(s ?? "").replace(/[&<>"']/g, (c) =>
     ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c])
@@ -138,6 +156,8 @@ let renderKlien, renderProyek, renderInvoice;
   renderKlien = (obj) => {
     const rows = Object.entries(obj);
     document.getElementById("hitung-klien").textContent = rows.length;
+    // sinkronkan dropdown Klien di form Proyek
+    isiDropdown(document.querySelector('#form-proyek [name="klien"]'), rows.map(([, k]) => k.nama), "— pilih klien —");
     tbody.innerHTML =
       rows
         .map(
@@ -213,6 +233,8 @@ let renderKlien, renderProyek, renderInvoice;
   renderProyek = (obj) => {
     const rows = Object.entries(obj);
     document.getElementById("hitung-proyek").textContent = rows.length;
+    // sinkronkan dropdown Proyek di form Invoice
+    isiDropdown(document.querySelector('#form-invoice [name="proyek"]'), rows.map(([, p]) => p.nama), "— pilih proyek —");
     tbody.innerHTML =
       rows
         .map(
@@ -237,6 +259,7 @@ let renderKlien, renderProyek, renderInvoice;
         const p = obj[b.dataset.edit];
         idField.value = b.dataset.edit;
         form.nama.value = p.nama || "";
+        pastikanOpsi(form.klien, p.klien);
         form.klien.value = p.klien || "";
         form.status.value = p.status || "Rencana";
         form.deadline.value = p.deadline || "";
@@ -314,6 +337,7 @@ let renderKlien, renderProyek, renderInvoice;
         const inv = obj[b.dataset.edit];
         idField.value = b.dataset.edit;
         form.nomor.value = inv.nomor || "";
+        pastikanOpsi(form.proyek, inv.proyek);
         form.proyek.value = inv.proyek || "";
         form.jumlah.value = inv.jumlah || "";
         form.status.value = inv.status || "Belum Lunas";

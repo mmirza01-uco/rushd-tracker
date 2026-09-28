@@ -59,7 +59,9 @@
         <input type="hidden" id="proyek-id" />
         <div class="grid-form">
           <label>Nama proyek <input name="nama" required placeholder="Judul proyek" /></label>
-          <label>Klien <input name="klien" placeholder="Nama klien" /></label>
+          <label>Klien
+            <select name="klien"><option value="">— pilih klien —</option></select>
+          </label>
           <label>Status
             <select name="status">
               <option value="Rencana">Rencana</option>
@@ -93,7 +95,9 @@
         <input type="hidden" id="invoice-id" />
         <div class="grid-form">
           <label>Nomor <input name="nomor" required placeholder="INV-001" /></label>
-          <label>Proyek <input name="proyek" placeholder="Nama proyek" /></label>
+          <label>Proyek
+            <select name="proyek"><option value="">— pilih proyek —</option></select>
+          </label>
           <label>Jumlah (Rp) <input type="number" name="jumlah" min="0" placeholder="0" /></label>
           <label>Status
             <select name="status">

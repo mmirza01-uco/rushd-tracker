@@ -19,7 +19,7 @@ let uid = null;
 
 // ---- Guard: hanya user login + terverifikasi yang boleh di sini ----
 onAuthStateChanged(auth, (user) => {
-  if (!user) {
+  if (!user || !user.emailVerified) {
     window.location.href = "index.html";
     return;
   }

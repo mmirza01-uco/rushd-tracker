@@ -1,8 +1,7 @@
-# Rushd Studio Tracker — Sesi 10 (branch: sesi-10)
+# Rushd Studio Tracker — Sesi 11 (branch: sesi-11)
 
-Melanjutkan Sesi 9, siap **deploy ke Render** (static site), plus penyempurnaan:
+Melanjutkan Sesi 10 dengan **webmailer (verifikasi email)** dan error handling.
 
-- Relasi data via dropdown: field Klien di form Proyek dan field Proyek di form Invoice terisi otomatis dari data yang ada.
-- Cloud service: Firebase (backend) + Render (hosting). Vercel tidak dipakai.
-
-Deploy Render: New > Static Site, Build Command dikosongkan, Publish Directory `.`.
+- Saat register, sistem mengirim link verifikasi ke email; setelah diklik, pengguna diarahkan ke halaman login.
+- Login hanya berhasil jika email sudah diverifikasi.
+- Error handling: "Akun tidak ditemukan" dan "Password salah".
